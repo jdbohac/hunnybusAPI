@@ -28,6 +28,11 @@ app.delete('/events/:id',  (req, res) => {
         console.log(err)
     })
 })
+app.put('/events/:id', (req, res) => {
+    Events.findByIdAndUpdate(req.params.id, req.body, {new: true}).then((updatedEvent) => {
+        res.json(updatedEvent)
+    })
+})
 mongoose.connect('mongodb://localhost:27017/events')
 mongoose.connection.once('open', () => {
     console.log('connected to mongod... @ //localhost:27017/events');
