@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const Events = require('./models/events.js')
 const cors = require('cors')
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors())
 app.use(express.json())
 app.listen(3000, () => {
