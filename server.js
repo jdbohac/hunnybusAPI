@@ -20,7 +20,14 @@ app.post('/events', (req, res) => {
         res.json(createdEvent)
     })
 })
-
+app.delete('/events/:id',  (req, res) => {
+    Events.findByIdAndRemove(req.params.id)
+    .then((deletedEvent) => {
+    res.json(deletedEvent)
+    }).catch((err) => {
+        console.log(err)
+    })
+})
 mongoose.connect('mongodb://localhost:27017/events')
 mongoose.connection.once('open', () => {
     console.log('connected to mongod... @ //localhost:27017/events');
